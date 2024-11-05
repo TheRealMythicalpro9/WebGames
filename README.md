@@ -1,2 +1,2 @@
-# online-website with games [![pipeline](https://github.com/TheRealMythicalpro9/sites/)]
+# online-website with games
 site for me
