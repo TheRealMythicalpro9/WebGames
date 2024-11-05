@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .game-container {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .choices {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+        .choices button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .choices button:hover {
+            transform: scale(1.2);
+        }
+        select {
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            background: #8f94fb;
+            color: #fff;
+        }
+        .result {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <div class="game-container">
+        <label for="difficulty">Choose Difficulty:</label>
+        <select id="difficulty">
+            <option value="xxeasy">XXEasy</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+            <option value="impossible">Impossible</option>
+        </select>
+        
+        <div class="choices">
+            <button onclick="playGame('rock')">✊</button>
+            <button onclick="playGame('paper')">✋</button>
+            <button onclick="playGame('scissors')">✌️</button>
+        </div>
+        
+        <div class="result" id="result">Make a choice to play!</div>
+    </div>
+
+    <script>
+        const choices = ["rock", "paper", "scissors"];
+        
+        function getBotChoice(difficulty, playerChoice) {
+            let botChoice;
+            const randomChoice = () => choices[Math.floor(Math.random() * 3)];
+            
+            switch(difficulty) {
+                case "xxeasy":
+                    // Random bot choice, very easy to beat
+                    botChoice = randomChoice();
+                    break;
+                case "easy":
+                    // Bot chooses the option that will win 33% of the time
+                    botChoice = Math.random() < 0.66 ? randomChoice() : playerChoice;
+                    break;
+                case "medium":
+                    // Balanced approach, fair randomness
+                    botChoice = randomChoice();
+                    break;
+                case "hard":
+                    // Bot chooses an option that wins 66% of the time
+                    botChoice = Math.random() < 0.33 ? randomChoice() : getCounterChoice(playerChoice);
+                    break;
+                case "impossible":
+                    // Bot always wins
+                    botChoice = getCounterChoice(playerChoice);
+                    break;
+            }
+            return botChoice;
+        }
+        
+        function getCounterChoice(playerChoice) {
+            if (playerChoice === "rock") return "paper";
+            if (playerChoice === "paper") return "scissors";
+            return "rock";
+        }
+        
+        function playGame(playerChoice) {
+            const difficulty = document.getElementById("difficulty").value;
+            const botChoice = getBotChoice(difficulty, playerChoice);
+            
+            let resultMessage = `You chose ${emoji(playerChoice)}, Bot chose ${emoji(botChoice)}. `;
+            
+            if (playerChoice === botChoice) {
+                resultMessage += "It's a tie!";
+            } else if ((playerChoice === "rock" && botChoice === "scissors") ||
+                       (playerChoice === "scissors" && botChoice === "paper") ||
+                       (playerChoice === "paper" && botChoice === "rock")) {
+                resultMessage += "You win! 🎉";
+            } else {
+                resultMessage += "Bot wins! 😈";
+            }
+            
+            document.getElementById("result").innerText = resultMessage;
+        }
+        
+        function emoji(choice) {
+            if (choice === "rock") return "✊";
+            if (choice === "paper") return "✋";
+            return "✌️";
+        }
+    </script>
+</body>
+</html>
