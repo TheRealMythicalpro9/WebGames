@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        #board {
+            display: grid;
+            grid-template-columns: repeat(7, 50px);
+            grid-template-rows: repeat(6, 50px);
+            gap: 5px;
+            margin-top: 20px;
+        }
+        .cell {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: lightgray;
+            cursor: pointer;
+        }
+        .red {
+            background-color: red;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+        #gameStatus {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        #difficulty {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Connect Four</h1>
+    <select id="difficulty">
+        <option value="xxeasy">XXEasy</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+        <option value="impossible">Impossible</option>
+    </select>
+    <div id="board"></div>
+    <p id="gameStatus">Your turn...</p>
+
+    <script src="connect-four.js"></script>
+
+    <button onclick="window.location.href='../homepage.html'">Homepage</button>
+
+</body>
+</html>
