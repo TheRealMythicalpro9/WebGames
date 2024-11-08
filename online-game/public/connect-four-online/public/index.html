@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four Online</title>
+    <style>
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(7, 50px);
+            gap: 5px;
+            margin: 20px auto;
+            width: 375px;
+        }
+        .cell {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: lightgray;
+        }
+        .red { background-color: red; }
+        .yellow { background-color: yellow; }
+        #status { text-align: center; font-size: 18px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Connect Four Online</h1>
+    <div id="game-board"></div>
+    <div id="status">Waiting for opponent...</div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+    <button onclick="window.location.href='../homepage.html'">Homepage</button>
+<footer>
+    <p>Contact Info: <a href="henryhrichmond@icloud.com">henryhrichmond@icloud.com</a></p>
+    <p>Visit my GitHub: <a href="https://github.com/TheRealMythicalpro9" target="_blank">TheRealMythicalpro9</a></p>
+    <p>Text me(don't call) at (1)425-534-3012</p>
+    <p>&copy; 2024 My Online Game</p>
+</footer>
+</body>
+</html>
