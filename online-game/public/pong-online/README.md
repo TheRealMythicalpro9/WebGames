@@ -1,0 +1,4 @@
+# pong-game-multiplayer
+The project is a basic showcase of a full-stack JavaScript multiplayer online ping-pong game. The backend is based on Node.js, Express and Socket.io-Server. The frontend is based on VanillaJS, Canvas and Socket.io-Client. The aim of the application is to play ping pong against other online players. The game itself is basic optimized for mobile devices and based on canvas. As soon as two players are available and ready to play, a game starts in a dedicated room with these two players. The data between these players are synchroised via socket a connection. The game ends as soon as one player scores 5 times. The application is served via a http-server that uses an express based api endpoint. The http-server / api as well as the socket server are hosted via one domain and port, to enable a deployment from a single server.
+
+*This showcase application is deployed on a free trier of Heroku.com*
