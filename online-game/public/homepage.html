@@ -16,11 +16,25 @@
         h1 {
             margin-bottom: 20px;
         }
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 18px;
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Automatic columns with min width of 200px */
+            gap: 15px;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 12px 24px;
+            font-size: 16px;
             cursor: pointer;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .button-container button:hover {
+            background-color: #007bff;
+            color: white;
+            transform: scale(1.1); /* Slight zoom effect */
         }
     </style>
     <script src="/js/homepage.js"></script>
@@ -28,32 +42,18 @@
 <body>
     <h1>Welcome to the Online Game</h1>
 
-    <!-- Chat button -->
-    <button onclick="goToPage('chat.html')">Chat</button>
-
-    <!-- Player List button -->
-    <button onclick="goToPage('player-list.html')">List of Players</button>
-
-    <!-- Add this button alongside your existing buttons -->
-    <button onclick="window.location.href='/tic-tac-toe/tic-tac-toe.html'">Play Tic-Tac-Toe</button>
-   
-    <button onclick="window.location.href='/tic-tac-toe-online/client.html'">Tic-Tac-Toe-Online</button>
-
-    <button onclick="window.location.href='/connect-four/connect-four.html'">Play Connect Four</button>
-    
-    <button onclick="window.location.href='/rock-paper-scissors.html'">Play Rock Paper Scissors</button>
-
-    <button onclick="window.location.href='/chess/index.html'">Chess!</button>
-
-    <button onclick="window.location.href='pong/pong.html'">Pong</button>
-
-    <button onclick="window.location.href='/rock-paper-scissors.html'">Play Rock Paper Scissors</button>
-
-    <button onclick="window.location.href='/chess/index.html'">Chess!</button>
-
-    <button onclick="window.location.href='pong/pong.html'">Pong</button>
-    
-    <button onclick="window.location.href='/pong-online/public/index.html'">Pong Online</button>
+    <div class="button-container">
+        <!-- Buttons as before -->
+        <button onclick="goToPage('chat.html')">Chat</button>
+        <button onclick="goToPage('player-list.html')">List of Players</button>
+        <button onclick="window.location.href='/tic-tac-toe/tic-tac-toe.html'">Play Tic-Tac-Toe</button>
+        <button onclick="window.location.href='/tic-tac-toe-online/client/index.html'">Tic-Tac-Toe-Online</button>
+        <button onclick="window.location.href='/connect-four/connect-four.html'">Play Connect Four</button>
+        <button onclick="window.location.href='/rock-paper-scissors.html'">Play Rock Paper Scissors</button>
+        <button onclick="window.location.href='/chess/index.html'">Chess!</button>
+        <button onclick="window.location.href='pong/pong.html'">Pong</button>
+        <button onclick="window.location.href='/pong-online/public/index.html'">Pong Online</button>
+    </div>
 
     <footer>
         <p>Contact Info: <a href="henryhrichmond@icloud.com">henryhrichmond@icloud.com</a></p>

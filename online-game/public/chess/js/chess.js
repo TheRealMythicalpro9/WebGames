@@ -1912,8 +1912,4 @@ var Chess = function(fen) {
   if (typeof define !== 'undefined')
     define(function() {
       return Chess
-<<<<<<< HEAD
     })
-=======
-    })
->>>>>>> 192e17699621a37cee81a0fb9af7736bb862773f
