@@ -1,5 +1,5 @@
 [build]
-    command = "npm run build"
+    command = "npm install"
     publish="/online-game/public"
     base = "/"
   functions = "netlify/functions" # Path to functions folder
@@ -8,6 +8,6 @@
     from = "/*"
     to = "/online-game/public/homepage.html"
     status = 200
-    
+
 [[[plugins]]]
   package = "@netlify/plugin-functions-install-core"
