@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "deno": "^0.1.1",
+    "express": "^4.21.1",
     "serverless-http": "^3.2.0"
   }
 }
