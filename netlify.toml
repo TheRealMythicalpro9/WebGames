@@ -1,0 +1,5 @@
+[build]
+  functions = "netlify/functions" # Path to functions folder
+
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
