@@ -1,8 +1,8 @@
-// server.js
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const path = require('path');
+const { spawn } = require('child_process'); // Import child_process module
 
 const app = express();
 const server = http.createServer(app);
@@ -57,8 +57,24 @@ io.on('connection', (socket) => {
     });
 });
 
-// Start the server on Render's assigned port or default to 3000
+// Start the main server on Render's assigned port or default to 3000
 const port = process.env.PORT || 3000;
 server.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Main server is running on port ${port}`);
+});
+
+// Run the other server.js located in another folder
+const otherServerPath = './public/pong-online/pong-game-multiplayer/server.js'; // Replace with the actual path
+const otherServerProcess = spawn('node', [otherServerPath], {
+    stdio: 'inherit' // Passes the output of the other process to the main console
+});
+
+// Handle errors from the other server process
+otherServerProcess.on('error', (err) => {
+    console.error('Failed to start the other server:', err);
+});
+
+// Handle process exit
+otherServerProcess.on('exit', (code) => {
+    console.log(`Other server exited with code ${code}`);
 });
