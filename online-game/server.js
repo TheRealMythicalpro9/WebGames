@@ -62,10 +62,10 @@ server.listen(port, () => {
 
 // Define paths to the additional server.js files
 const additionalServers = [
-    path.join(__dirname, 'public/pong-online/server.js'), 
-    path.join(__dirname, 'public/tic-tac-toe-online/server/index.js'), 
-    path.join(__dirname, 'public/connect-four-online/server.js'),
-    path.join(__dirname, 'public/rock-paper-scissors-online/server.js'),
+    './public/pong-online/server.js', // Replace with actual path
+    './public/tic-tac-toe-online/server/index.js', // Replace with actual path
+    './public/connect-four-online/server.js',
+    './public/rock-paper-scissors-online/server.js',
 ];
 
 // Function to spawn each additional server process
