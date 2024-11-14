@@ -5,7 +5,9 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "socket.io": "^4.0.0"
+    "deno": "^0.1.1",
+      "express": "^4.21.1",
+      "serverless-http": "^3.2.0",
+      "socket.io": "^4.8.1"
   }
 }
