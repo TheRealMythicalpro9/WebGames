@@ -1,7 +1,9 @@
 {
-    "dependencies": {
-      "express": "^4.21.1",
-      "socket.io": "^4.8.1"
-    }
+  "scripts": {
+    "start": "node public/connect-four-online/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "socket.io": "^4.8.1"
   }
-  
+}
