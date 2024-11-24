@@ -1,67 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage</title>
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-        }
-        h1 {
-            margin-bottom: 20px;
-        }
-        .button-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Automatic columns with min width of 200px */
-            gap: 15px;
-            max-width: 600px;
-            margin-top: 20px;
-        }
-        .button-container button {
-            padding: 12px 24px;
-            font-size: 16px;
-            cursor: pointer;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .button-container button:hover {
-            background-color: #007bff;
-            color: white;
-            transform: scale(1.1); /* Slight zoom effect */
-        }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      .button-container {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fill,
+          minmax(200px, 1fr)
+        ); /* Automatic columns with min width of 200px */
+        gap: 15px;
+        max-width: 600px;
+        margin-top: 20px;
+      }
+      .button-container button {
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+      .button-container button:hover {
+        background-color: #007bff;
+        color: white;
+        transform: scale(1.1); /* Slight zoom effect */
+      }
     </style>
     <script src="/js/homepage.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Welcome to the Online Game</h1>
 
     <div class="button-container">
-        <!-- Buttons as before -->
-        <button onclick="goToPage('chat.html')">Chat</button>
-        <button onclick="goToPage('player-list.html')">List of Players</button>
-        <button onclick="window.location.href='/tic-tac-toe/tic-tac-toe.html'">Play Tic-Tac-Toe</button>
-        <button onclick="window.location.href='/tic-tac-toe-online/client/index.html'">Tic-Tac-Toe-Online</button>
-        <button onclick="window.location.href='/connect-four/connect-four.html'">Play Connect Four</button>
-        <button onclick="window.location.href='/connect-four-online/public/index.html'">Play Connect Four Online</button>
-        <button onclick="window.location.href='/rock-paper-scissors.html'">Play Rock Paper Scissors</button>
-        <button onclick="window.location.href='/rock-paper-scissors-online/public/index.html'">Play Rock Paper Scissors Online</button>
-        <button onclick="window.location.href='/chess/index.html'">Chess!</button>
-        <button onclick="window.location.href='pong/pong.html'">Pong</button>
-        <button onclick="window.location.href='/pong-online/public/index.html'">Pong Online</button>
+      <!-- Buttons as before -->
+      <button onclick="goToPage('chat.html')">Chat</button>
+      <button onclick="goToPage('player-list.html')">List of Players</button>
+      <button onclick="window.location.href='/tic-tac-toe/tic-tac-toe.html'">
+        Play Tic-Tac-Toe
+      </button>
+      <button onclick="window.location.href='/connect-four/connect-four.html'">
+        Play Connect Four
+      </button>
+      <button onclick="window.location.href='/rock-paper-scissors.html'">
+        Play Rock Paper Scissors
+      </button>
+      <button onclick="window.location.href='/chess/index.html'">Chess!</button>
+      <button onclick="window.location.href='pong/pong.html'">Pong</button>
+      <button
+        onclick="window.location.href='https://pong-online-ykcu.onrender.com'"
+      >
+        Pong Online
+      </button>
+      <button
+        onclick="window.location.href='https://connect-four-online-cckn.onrender.com'"
+      >
+        Connect Four Online
+      </button>
+      <button
+        onclick="window.location.href='https://rock-paper-scissors-online-qu47.onrender.com'"
+      >
+        Rock Paper Scissors Online
+      </button>
+      <button
+        onclick="window.location.href='https://tic-tac-toe-online-4yq9.onrender.com'"
+      >
+        Tic-Tac-Toe Online
+      </button>
     </div>
 
     <footer>
-        <p>Contact Info: <a href="henryhrichmond@icloud.com.html">henryhrichmond@icloud.com</a></p>
-        <p>Visit my GitHub: <a href="https://github.com/TheRealMythicalpro9" target="_blank">TheRealMythicalpro9</a></p>
-        <p>Text me(don't call) at (1)425-534-3012</p>
-        <p>&copy; 2024 My Online Game</p>
+      <p>
+        Contact Info:
+        <a href="henryhrichmond@icloud.com.html">henryhrichmond@icloud.com</a>
+      </p>
+      <p>
+        Visit my GitHub:
+        <a href="https://github.com/TheRealMythicalpro9" target="_blank"
+          >TheRealMythicalpro9</a
+        >
+      </p>
+      <p>Text me(don't call) at (1)425-534-3012</p>
+      <p>&copy; 2024 My Online Game</p>
     </footer>
-</body>
+  </body>
 </html>
