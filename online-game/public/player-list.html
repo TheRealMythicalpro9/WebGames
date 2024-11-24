@@ -1,51 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
     <title>Player List</title>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/player-list.js"></script>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
+    <script>
+      const socket = io();
+
+      // Retrieve or prompt for username
+      let username = localStorage.getItem("username");
+      if (!username) {
+        username = prompt("Enter Username");
+        while (
+          !username ||
+          username.trim().length < 3 ||
+          username.trim().length > 20
+        ) {
+          username = prompt("Enter a valid username (3-20 characters):");
         }
-        h1 {
-            margin-bottom: 20px;
-        }
-        #user-list {
-            margin-top: 20px;
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 5px 0;
-            font-size: 18px;
-        }
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <h1>Connected Players</h1>
-    <ul id="user-list"></ul>
-    
-    <!-- Back to Home Button -->
-    <button onclick="window.location.href='/homepage.html'">Back to Home</button>
+        username = username.trim();
+        localStorage.setItem("username", username); // Save username to localStorage
+      }
+
+      // Emit the username to the server
+      socket.emit("setUsername", username);
+
+      // Update the player list dynamically
+      socket.on("userList", function (users) {
+        const playerList = document.getElementById("player-list");
+        playerList.innerHTML = ""; // Clear the list
+        users.forEach((user) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = user;
+          playerList.appendChild(listItem);
+        });
+      });
+
+      // Allow the user to clear their username
+      function clearUsername() {
+        localStorage.removeItem("username");
+        location.reload(); // Reload the page to prompt for a new username
+      }
+    </script>
+  </head>
+  <body>
+    <center>
+      <h1>Player List</h1>
+      <p>Your username: <strong id="username-display"></strong></p>
+      <ul id="player-list" style="list-style-type: none; padding: 0"></ul>
+      <button onclick="clearUsername()">Change Username</button>
+    </center>
+
+    <script>
+      // Display the current username
+      document.getElementById("username-display").textContent = username;
+    </script>
+    <button onclick="window.location.href='../homepage.html'">Homepage</button>
+
     <footer>
-        <p>Contact Info: <a href="henryhrichmond@icloud.com.html">henryhrichmond@icloud.com</a></p>
-        <p>Visit my GitHub: <a href="https://github.com/TheRealMythicalpro9" target="_blank">TheRealMythicalpro9</a></p>
-        <p>Text me(don't call) at (1)425-534-3012</p>
-        <p>&copy; 2024 My Online Game</p>
+      <p>
+        Contact Info:
+        <a href="henryhrichmond@icloud.com.html">henryhrichmond@icloud.com</a>
+      </p>
+      <p>
+        Visit my GitHub:
+        <a href="https://github.com/TheRealMythicalpro9" target="_blank"
+          >TheRealMythicalpro9</a
+        >
+      </p>
+      <p>Text me(don't call) at (1)425-534-3012</p>
+      <p>&copy; 2024 My Online Game</p>
     </footer>
-</body>
+  </body>
 </html>
