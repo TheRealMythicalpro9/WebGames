@@ -10,6 +10,7 @@
             flex-direction: column;
             align-items: center;
             font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
         }
         #board {
             display: grid;
@@ -27,6 +28,7 @@
             justify-content: center;
             font-size: 24px;
             cursor: pointer;
+            background: linear-gradient(145deg, #ff7e5f, #feb47b);
         }
         #gameStatus {
             margin-top: 20px;
@@ -60,7 +62,7 @@
     <p id="gameStatus">Your move...</p>
 
     <script src="tic-tac-toe.js"></script>
-
+    <button onclick="resetGame()">Reset Game</button>
     <button onclick="window.location.href='../homepage.html'">Homepage</button>
     <footer>
         <p>Contact Info: <a href="../henryhrichmond@icloud.com.html">henryhrichmond@icloud.com</a></p>

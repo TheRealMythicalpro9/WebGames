@@ -1,7 +1,7 @@
 const cells = document.querySelectorAll('.cell');
 const difficultySelect = document.getElementById('difficulty');
 let gameBoard = Array(9).fill(null);
-let currentPlayer = 'X'; // Player is 'X', bot is 'O'
+let currentPlayer = '❌'; // Player is 'X', bot is 'O'
 let botDifficulty = 'xxeasy'; // Default difficulty
 
 difficultySelect.addEventListener('change', () => {
@@ -30,7 +30,7 @@ function handleCellClick(event) {
     }
 
     // Change turn to bot
-    currentPlayer = 'O';
+    currentPlayer = '⭕';
     botMove();
 }
 
@@ -67,7 +67,7 @@ function botMove() {
         }
 
         // Change turn back to player
-        currentPlayer = 'X';
+        currentPlayer = '❌';
         document.getElementById('gameStatus').innerText = "Your move...";
     }
 }
@@ -79,10 +79,10 @@ function getXXEasyMove() {
 
 function getEasyMove() {
     // Random move with basic blocking
-    const winningMove = findWinningMove('O');
+    const winningMove = findWinningMove('⭕');
     if (winningMove !== null) return winningMove; // Bot wins
 
-    const blockingMove = findWinningMove('X');
+    const blockingMove = findWinningMove('❌');
     if (blockingMove !== null) return blockingMove; // Block player
 
     return getRandomMove(); // Otherwise, random move
@@ -90,10 +90,10 @@ function getEasyMove() {
 
 function getMediumMove() {
     // Tries to win, then blocks player, otherwise random
-    const winningMove = findWinningMove('O');
+    const winningMove = findWinningMove('⭕');
     if (winningMove !== null) return winningMove; // Bot wins
 
-    const blockingMove = findWinningMove('X');
+    const blockingMove = findWinningMove('❌');
     if (blockingMove !== null) return blockingMove; // Block player
 
     return getRandomMove(); // Random move
@@ -101,10 +101,10 @@ function getMediumMove() {
 
 function getHardMove() {
     // Smart blocking and winning
-    const winningMove = findWinningMove('O');
+    const winningMove = findWinningMove('⭕');
     if (winningMove !== null) return winningMove; // Bot wins
 
-    const blockingMove = findWinningMove('X');
+    const blockingMove = findWinningMove('❌');
     if (blockingMove !== null) return blockingMove; // Block player
 
     return getRandomMove(); // Otherwise, random move
@@ -117,9 +117,9 @@ function getBestMove() {
 
     for (let i = 0; i < 9; i++) {
         if (gameBoard[i] === null) {
-            gameBoard[i] = 'O'; // Assume the bot plays this move
-            const moveValue = minimax(gameBoard, 0, false); // Get the minimax value
-            gameBoard[i] = null; // Undo the move
+            gameBoard[i] = '⭕'; // Simulate bot's move
+            const moveValue = minimax(gameBoard, 0, false);
+            gameBoard[i] = null; // Undo move
 
             if (moveValue > bestValue) {
                 bestMove = i;
@@ -130,20 +130,19 @@ function getBestMove() {
     return bestMove;
 }
 
-// Minimax algorithm implementation
 function minimax(board, depth, isMaximizing) {
     const score = evaluateBoard(board);
-    if (score === 10) return score - depth; // O wins
-    if (score === -10) return score + depth; // X wins
-    if (board.every(cell => cell !== null)) return 0; // Draw
+    if (score === 10) return score - depth; // Prioritize quicker wins
+    if (score === -10) return score + depth; // Prioritize delaying losses
+    if (board.every(cell => cell !== null)) return 0; // Tie
 
     if (isMaximizing) {
         let best = -Infinity;
         for (let i = 0; i < 9; i++) {
             if (board[i] === null) {
-                board[i] = 'O';
+                board[i] = '⭕'; // Simulate bot's move
                 best = Math.max(best, minimax(board, depth + 1, false));
-                board[i] = null;
+                board[i] = null; // Undo move
             }
         }
         return best;
@@ -151,9 +150,9 @@ function minimax(board, depth, isMaximizing) {
         let best = Infinity;
         for (let i = 0; i < 9; i++) {
             if (board[i] === null) {
-                board[i] = 'X';
+                board[i] = '❌'; // Simulate player's move
                 best = Math.min(best, minimax(board, depth + 1, true));
-                board[i] = null;
+                board[i] = null; // Undo move
             }
         }
         return best;
@@ -169,8 +168,8 @@ function evaluateBoard(board) {
 
     for (const combination of winningCombinations) {
         const [a, b, c] = combination;
-        if (board[a] === 'O' && board[b] === 'O' && board[c] === 'O') return 10; // O wins
-        if (board[a] === 'X' && board[b] === 'X' && board[c] === 'X') return -10; // X wins
+        if (board[a] === '⭕' && board[b] === '⭕' && board[c] === '⭕') return 10; // O wins
+        if (board[a] === '❌' && board[b] === '❌' && board[c] === '❌') return -10; // X wins
     }
     return 0; // No winner
 }
@@ -198,7 +197,7 @@ function findWinningMove(player) {
 // Reset the game state
 function resetGame() {
     gameBoard = Array(9).fill(null);
-    currentPlayer = 'X'; // Reset player to 'X'
+    currentPlayer = '❌'; // Reset player to 'X'
     cells.forEach(cell => {
         cell.innerText = '';
     });
@@ -214,8 +213,8 @@ function checkWinner() {
 
     for (const combination of winningCombinations) {
         const [a, b, c] = combination;
-        if (gameBoard[a] === 'O' && gameBoard[b] === 'O' && gameBoard[c] === 'O') return true; // O wins
-        if (gameBoard[a] === 'X' && gameBoard[b] === 'X' && gameBoard[c] === 'X') return true; // X wins
+        if (gameBoard[a] === '⭕' && gameBoard[b] === '⭕' && gameBoard[c] === '⭕') return true; // O wins
+        if (gameBoard[a] === '❌' && gameBoard[b] === '❌' && gameBoard[c] === '❌') return true; // X wins
     }
     return false; // No winner
 }
