@@ -4,70 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connect Four</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #6dd5ed, #2193b0);
-        }
-        #board {
-            display: grid;
-            grid-template-columns: repeat(7, 50px);
-            grid-template-rows: repeat(6, 50px);
-            gap: 5px;
-            margin-top: 20px;
-        }
-        .cell {
-            width: 50px;
-            height: 50px;
-            border: 1px solid black;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 50%;
-        }
-        .red {
-            background-color: red;
-            opacity: 100%;
-        }
-        .yellow {
-            background-color: yellow;
-            opacity: 100%;
-        }
-        #gameStatus {
-            margin-top: 20px;
-            font-size: 20px;
-        }
-        #difficulty {
-            margin-top: 20px;
-            background: linear-gradient(145deg, #ff7e5f, #feb47b);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Connect Four</h1>
-    <select id="difficulty">
-        <option value="xxeasy">XXEasy</option>
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-        <option value="impossible">Impossible</option>
-    </select>
-    <div id="board"></div>
-    <p id="gameStatus">Your turn...</p>
-
+    <div class="container">
+        <h1>Connect Four</h1>
+        <div class="game-info">
+            <button onclick="resetGame()">Reset Game</button>
+            <label for="level">Bot Level:</label>
+            <select id="level" onchange="setBotLevel()">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+                <option value="impossible">Impossible</option>
+            </select>
+        </div>
+        <div class="board" id="board"></div>
+    </div>
     <script src="connect-four.js"></script>
 
-    <button onclick="window.location.href='../homepage.html'">Homepage</button>
-    <footer>
-        <p>Contact Info: <a href="../henryhrichmond@icloud.com.html">henryhrichmond@icloud.com</a></p>
-        <p>Visit my GitHub: <a href="https://github.com/TheRealMythicalpro9" target="_blank">TheRealMythicalpro9</a></p>
-        <p>Text me(don't call) at (1)425-534-3012</p>
-        <p>&copy; 2024 My Online Game</p>
-    </footer>
+<button onclick="window.location.href='../homepage.html'">Homepage</button>
+<footer>
+    <p>Contact Info: <a href="../henryhrichmond@icloud.com.html">henryhrichmond@icloud.com</a></p>
+    <p>Visit my GitHub: <a href="https://github.com/TheRealMythicalpro9" target="_blank">TheRealMythicalpro9</a></p>
+    <p>Text me(don't call) at (1)425-534-3012</p>
+    <p>&copy; 2024 My Online Game</p>
+</footer>
 </body>
 </html>

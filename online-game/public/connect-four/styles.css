@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: linear-gradient(145deg, #6dd5ed, #2193b0);
+}
+
+.container {
+    text-align: center;
+}
+
+.game-info {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(7, 70px);
+    grid-template-rows: repeat(6, 70px);
+    gap: 5px;
+    margin-top: 20px;
+    
+}
+
+.cell {
+    width: 70px; /* Adjust size as needed */
+    height: 70px; /* Adjust size as needed */
+    background: linear-gradient(145deg, #ff7e5f, #feb47b); /* Default gradient */
+    border: 1px solid #ddd;
+    border-radius: 50%; /* Makes it circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2), -2px -2px 6px rgba(255, 255, 255, 0.4); /* Slight 3D effect */
+}
+
+.cell.red {
+    background: radial-gradient(circle, red 60%, #ff0000 90%); /* Red when selected */
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.6); /* Glow effect */
+}
+
+.cell.yellow {
+    background: radial-gradient(circle, yellow 60%, #ffeb3b 90%); /* Yellow when selected */
+    box-shadow: 0 0 12px rgba(255, 255, 0, 0.6); /* Glow effect */
+}
+
+/* Hover and click effects */
+.cell:hover {
+    transform: scale(1.1); /* Slight enlarge effect */
+    cursor: pointer;
+}
+.cell:active {
+    transform: scale(0.95); /* Shrink effect on click */
+}
