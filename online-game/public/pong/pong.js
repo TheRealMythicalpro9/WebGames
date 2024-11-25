@@ -23,7 +23,7 @@ const paddleAI = {
     easy: { speed: 4, patternSpeed: 1 },
     medium: { speed: 6, missedRate: 0.3 },
     hard: { speed: 8, missedRate: 0 },
-    impossible: { speed: 10, missedRate: 0, ballSpeedMultiplier: 1.1 }
+    impossible: { speed: 12, missedRate: 0, ballSpeedMultiplier: 1.1 }
 };
 
 // Draw paddles, ball, and UI
@@ -56,22 +56,38 @@ function movePaddles() {
     }
 
     const bot = paddleAI[botDifficulty];
+    let targetY = botY;
+
     switch (botDifficulty) {
         case 'easy':
+            // Simple back-and-forth pattern
             if (botY <= 0 || botY + paddleHeight >= canvas.height) bot.patternSpeed *= -1;
-            botY += bot.patternSpeed;
+            targetY = botY + bot.patternSpeed;
             break;
+
         case 'medium':
+            // Follow the ball with occasional misses
             if (Math.random() > bot.missedRate) {
-                botY += ballY < botY + paddleHeight / 2 ? -bot.speed : bot.speed;
+                targetY = ballY - paddleHeight / 2;
             }
             break;
+
         case 'hard':
+            // Follow the ball exactly
+            targetY = ballY - paddleHeight / 2;
+            break;
+
         case 'impossible':
-            botY += ballY < botY + paddleHeight / 2 ? -bot.speed : bot.speed;
-            if (botDifficulty === 'impossible' && Math.random() > 0.95) ballSpeedX *= 1.1;
+            // Perfect follow
+            targetY = ballY - paddleHeight / 2;
             break;
     }
+
+    // Smoothly move the bot paddle towards the target position
+    const maxMove = bot.speed; // Maximum distance the paddle can move per frame
+    botY += Math.sign(targetY - botY) * Math.min(maxMove, Math.abs(targetY - botY));
+
+    // Ensure the paddle stays within the canvas bounds
     botY = Math.max(0, Math.min(canvas.height - paddleHeight, botY));
 }
 
@@ -80,22 +96,39 @@ function moveBall() {
     ballX += Math.cos(ballDirection) * ballSpeedX;
     ballY += Math.sin(ballDirection) * ballSpeedY;
 
-    if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) ballDirection = -ballDirection;
-
-    if (ballX - ballRadius < paddleWidth && ballY > playerY && ballY < playerY + paddleHeight) {
-        ballDirection = Math.PI - ballDirection + (Math.random() - 0.5) * Math.PI / 2;
-        ballSpeedX += 0.1;
+    // Ball collision with top and bottom walls
+    if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
+        ballDirection = -ballDirection; // Reverse vertical direction
+        ballY = Math.max(ballRadius, Math.min(canvas.height - ballRadius, ballY)); // Prevent clipping
     }
 
-    if (ballX + ballRadius > canvas.width - paddleWidth && ballY > botY && ballY < botY + paddleHeight) {
-        ballDirection = Math.PI - ballDirection + (Math.random() - 0.5) * Math.PI / 2;
-        ballSpeedX += 0.1;
+    // Player paddle collision
+    if (
+        ballX - ballRadius < paddleWidth &&
+        ballY > playerY &&
+        ballY < playerY + paddleHeight
+    ) {
+        ballDirection = Math.PI - ballDirection + (Math.random() - 0.5) * Math.PI / 4; // Add randomness
+        ballSpeedX += 0.1; // Increment speed slightly
+        ballX = paddleWidth + ballRadius; // Prevent clipping
+    }
+
+    // Bot paddle collision
+    if (
+        ballX + ballRadius > canvas.width - paddleWidth &&
+        ballY > botY &&
+        ballY < botY + paddleHeight
+    ) {
+        ballDirection = Math.PI - ballDirection + (Math.random() - 0.5) * Math.PI / 4; // Add randomness
+        ballSpeedX += 0.1; // Increment speed slightly
+        ballX = canvas.width - paddleWidth - ballRadius; // Prevent clipping
         if (botDifficulty === 'impossible') {
-            ballSpeedX *= paddleAI.impossible.ballSpeedMultiplier;
-            ballSpeedY *= paddleAI.impossible.ballSpeedMultiplier;
+            ballSpeedX = Math.min(ballSpeedX * paddleAI.impossible.ballSpeedMultiplier, 25); // Limit speed
+            ballSpeedY = Math.min(ballSpeedY * paddleAI.impossible.ballSpeedMultiplier, 12);
         }
     }
 
+    // Scoring: Ball goes out of bounds
     if (ballX - ballRadius < 0) {
         botScore++;
         resetBall();
@@ -109,9 +142,9 @@ function moveBall() {
 function resetBall() {
     ballX = canvas.width / 2;
     ballY = canvas.height / 2;
-    ballDirection = Math.random() * 2 * Math.PI;
-    ballSpeedX = document.getElementById("speedSlider").value;
-    ballSpeedY = document.getElementById("speedSlider").value;
+    ballDirection = Math.random() * 2 * Math.PI; // Random direction
+    ballSpeedX = Number(document.getElementById("speedSlider").value); // Reset speed
+    ballSpeedY = Number(document.getElementById("speedSlider").value); // Reset speed
 }
 
 // Update game state
