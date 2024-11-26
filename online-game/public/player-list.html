@@ -3,6 +3,74 @@
   <head>
     <title>Player List</title>
     <script src="/socket.io/socket.io.js"></script>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #6dd5ed,
+          #2193b0
+        ); /* Gradient background */
+        color: #fff;
+      }
+      h1 {
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 30px;
+      }
+      #player-list {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 30px;
+      }
+      #player-list li {
+        font-size: 1.2rem;
+        margin: 10px 0;
+      }
+      .button-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        max-width: 800px;
+        margin-top: 20px;
+      }
+      .button-container button {
+        padding: 15px 30px;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(145deg, #ff7e5f, #feb47b);
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .button-container button:hover {
+        transform: translateY(-5px);
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+      }
+      footer {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #ddd;
+      }
+      footer a {
+        color: #ffd700;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
     <script>
       const socket = io();
 
@@ -45,18 +113,19 @@
     </script>
   </head>
   <body>
-    <center>
-      <h1>Player List</h1>
-      <p>Your username: <strong id="username-display"></strong></p>
-      <ul id="player-list" style="list-style-type: none; padding: 0"></ul>
-      <button onclick="clearUsername()">Change Username</button>
-    </center>
+    <h1>Player List</h1>
+    <p>Your username: <strong id="username-display"></strong></p>
 
-    <script>
-      // Display the current username dynamically
-      document.getElementById("username-display").textContent = username;
-    </script>
-    <button onclick="window.location.href='../homepage.html'">Homepage</button>
+    <!-- Player List -->
+    <ul id="player-list"></ul>
+
+    <!-- Button Container -->
+    <div class="button-container">
+      <button onclick="clearUsername()">Change Username</button>
+      <button onclick="window.location.href='../homepage.html'">
+        Homepage
+      </button>
+    </div>
 
     <footer>
       <p>
@@ -69,8 +138,13 @@
           >TheRealMythicalpro9</a
         >
       </p>
-      <p>Text me(don't call) at (1)425-534-3012</p>
+      <p>Text me (don’t call) at (1) 425-534-3012</p>
       <p>&copy; 2024 My Online Game</p>
     </footer>
+
+    <script>
+      // Display the current username dynamically
+      document.getElementById("username-display").textContent = username;
+    </script>
   </body>
 </html>
