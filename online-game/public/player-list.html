@@ -6,8 +6,10 @@
     <script>
       const socket = io();
 
-      // Retrieve or prompt for username
+      // Retrieve username from localStorage
       let username = localStorage.getItem("username");
+
+      // If no username exists, prompt the user
       if (!username) {
         username = prompt("Enter Username");
         while (
@@ -51,7 +53,7 @@
     </center>
 
     <script>
-      // Display the current username
+      // Display the current username dynamically
       document.getElementById("username-display").textContent = username;
     </script>
     <button onclick="window.location.href='../homepage.html'">Homepage</button>

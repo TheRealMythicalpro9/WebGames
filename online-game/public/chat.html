@@ -67,8 +67,10 @@
       // Initialize socket.io
       const socket = io();
 
-      // Retrieve or prompt for username
+      // Retrieve username from localStorage
       let username = localStorage.getItem("username");
+
+      // If no username exists, prompt the user
       if (!username) {
         username = prompt("Enter Username");
         while (

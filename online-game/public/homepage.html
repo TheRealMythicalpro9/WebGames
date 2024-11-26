@@ -58,15 +58,65 @@
       footer a:hover {
         text-decoration: underline;
       }
+      .menu-container {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .menu-button {
+        width: 150px;
+        height: 50px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .menu-button:hover {
+        background-color: #218838;
+      }
     </style>
-    <script src="/js/homepage.js"></script>
+    <script>
+      // Check if username is already in sessionStorage
+      if (!sessionStorage.getItem("username")) {
+        // If not, prompt the user for a username
+        let username = prompt("Enter your username:");
+
+        // Ensure the username is valid (between 3 and 20 characters)
+        while (
+          !username ||
+          username.trim().length < 3 ||
+          username.trim().length > 20
+        ) {
+          username = prompt("Please enter a valid username (3-20 characters):");
+        }
+
+        // Save the username to sessionStorage for this session
+        sessionStorage.setItem("username", username);
+      }
+
+      // Now that the username is set, proceed with lobby options
+      document.querySelector(".menu-container").style.display = "block"; // Show the menu options
+
+      // Optionally, redirect to the first lobby automatically (uncomment to use)
+      // window.location.href = "/lobbies/lobby1/lobby1.html";
+    </script>
   </head>
   <body>
     <h1>Welcome to the Online Game</h1>
 
+    <!-- Menu Buttons (Appear after username is set) -->
+    <div class="menu-container" style="display: none">
+      <button class="menu-button">Create a Private Lobby</button>
+      <button class="menu-button">Join with a Code</button>
+    </div>
+
     <div class="button-container">
-      <button onclick="goToPage('chat.html')">Chat</button>
-      <button onclick="goToPage('player-list.html')">List of Players</button>
+      <button onclick="window.location.href='chat.html'">Chat</button>
+      <button onclick="window.location.href='player-list.html'">
+        List of Players
+      </button>
       <button onclick="window.location.href='/tic-tac-toe/tic-tac-toe.html'">
         Play Tic-Tac-Toe
       </button>
@@ -78,11 +128,36 @@
       </button>
       <button onclick="window.location.href='/chess/index.html'">Chess!</button>
       <button onclick="window.location.href='pong/pong.html'">Pong</button>
-      <button onclick="window.location.href='https://pong-online-ykcu.onrender.com'">Pong Online</button>
-      <button onclick="window.location.href='https://connect-four-online-cckn.onrender.com'">Connect Four Online</button>
-      <button onclick="window.location.href='https://rock-paper-scissors-online-qu47.onrender.com'">Rock Paper Scissors Online</button>
-      <button onclick="window.location.href='https://tic-tac-toe-online-4yq9.onrender.com'">Tic-Tac-Toe Online</button>
-      <button onclick="window.location.href='https://my-battleship-online.onrender.com'">BattleShip</button>
+      <button
+        onclick="window.location.href='https://pong-online-ykcu.onrender.com'"
+      >
+        Pong Online
+      </button>
+      <button
+        onclick="window.location.href='https://connect-four-online-cckn.onrender.com'"
+      >
+        Connect Four Online
+      </button>
+      <button
+        onclick="window.location.href='https://rock-paper-scissors-online-qu47.onrender.com'"
+      >
+        Rock Paper Scissors Online
+      </button>
+      <button
+        onclick="window.location.href='https://tic-tac-toe-online-4yq9.onrender.com'"
+      >
+        Tic-Tac-Toe Online
+      </button>
+      <button
+        onclick="window.location.href='https://my-battleship-online.onrender.com'"
+      >
+        BattleShip
+      </button>
+      <button
+        onclick="window.location.href='https://myonlinelobbies.onrender.com'"
+      >
+        Online Lobby
+      </button>
     </div>
 
     <footer>
