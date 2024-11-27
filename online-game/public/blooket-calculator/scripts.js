@@ -4,8 +4,10 @@ const packData = {
   "Space Pack": { "a": 75, "b": 20, "c": 4.5, "d": 0.45, "f": 1, "g": 0.05, "h": 20 },
   "Safari Pack": { "a": 75, "b": 21, "c": 3.48, "d": 0.5, "f": 1, "g": 0.02, "h": 20 },
   "Aquatic Pack": { "a": 75, "b": 24.3, "c": 6, "d": 0.5, "f": 1, "g": 0.02, "h": 20 },
-  "Ice Monster Pack": { "a": 78, "b": 17, "c": 4.5, "d": 0.45, "f": 1, "g": 0.15, "h": 25 }
-  
+  "Ice Monster Pack": { "a": 78, "b": 17, "c": 4.5, "d": 0.45, "f": 1, "g": 0.15, "h": 25 },
+  "Outback Pack": { "a": 75, "b": 21, "c": 3.7, "d": 0.37, "f": 1, "g": 0.03, "h": 25 },
+  "Pirate Pack": { "a": 80, "b": 16, "c": 3.67, "d": 0.3, "f": 1, "g": 0.03, "h": 25 },
+  "Autumn Pack": { "a": 78, "b": 18, "c": 2.95, "d": 1, "f": 1, "g": 0.05, "h": 25 }
 };
 
 // Populate the dropdown menu with pack names when the page loads
