@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Canvas for Hangman post and drawing -->
+        <canvas id="hangmanCanvas"></canvas>
+        
+        <!-- Display the word with underscores for unguessed letters -->
+        <div id="word-container" class="word-container"></div>
+        
+        <!-- Input and button for making guesses -->
+        <div class="input-container">
+            <input type="text" id="guess-input" maxlength="1" placeholder="Enter a letter">
+            <button id="submit-guess">Guess</button>
+        </div>
+        
+        <!-- Status and wrong guesses -->
+        <div id="status" class="status"></div>
+        <div id="hangman" class="wrong-guesses"></div>
+        
+        <!-- Button to restart the game -->
+        <button id="restart-game" class="restart-button">Restart Game</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
