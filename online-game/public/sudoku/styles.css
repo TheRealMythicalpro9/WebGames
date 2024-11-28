@@ -1,0 +1,176 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+}
+
+#menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 20px;
+}
+
+#number-menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.number {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  background: #ff7e5f;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.level {
+  cursor: pointer;
+  background: linear-gradient(145deg, #ff7e5f, #feb47b);
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(145deg, #ff7e5f, #feb47b); /* Match the .level button style */
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: transparent; /* Make the background transparent for both filled and empty cells */
+}
+
+td.fixed {
+  background-color: transparent; /* Ensure filled cells have the same transparent background */
+  color: black; /* Optional: Set color for numbers in fixed cells */
+}
+
+td.editable {
+  background-color: transparent; /* Ensure editable cells have the same transparent background */
+  color: black; /* Optional: Set color for numbers in editable cells */
+}
+
+td:nth-child(3), td:nth-child(6), td:nth-child(9) {
+  border-right: 2px solid #000; /* Thicker border between 3x3 blocks */
+}
+
+tr:nth-child(3), tr:nth-child(6), tr:nth-child(9) td {
+  border-bottom: 2px solid #000; /* Thicker border between 3x3 blocks */
+}
+
+input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+  pointer-events: auto;
+}
+
+input:focus {
+  outline: none;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+}
+
+input[readonly] {
+  background: linear-gradient(145deg, #ff7e5f, #feb47b);
+  pointer-events: none;
+}
+
+button {
+  background: #ff6403;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff6403
+}
+
+#hidden-button {
+  position: absolute;
+  visibility: hidden; /* Initially invisible */
+  background: transparent;
+  color: white; /* Make text white */
+  border: 2px solid #43b2ce; /* Very thin outline with color #43b2ce */
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#delete-button {
+  font-size: 18px;       /* Adjusts the text size */
+  padding: 10px 20px;    /* Controls the space around the text */
+  width: 100px;          /* Sets a fixed width */
+  height: 40px;          /* Sets a fixed height */
+  border-radius: 5px;    /* Optional: Adds rounded corners */
+  background-color: #f00; /* Optional: Changes background color */
+  color: white;          /* Optional: Changes text color */
+}
+
+/* Add a highlighted style to the number buttons */
+.highlighted {
+  background-color: #ff6403; /* Highlight color */
+  color: white;  /* Optional: change text color for better contrast */
+  border: 1px solid #ccc; /* Optional: keep the border consistent */
+}
+
+/* Fixed cells (pre-filled numbers) */
+.fixed {
+  background-color: transparent; /* Ensure filled cells have a consistent background */
+  color: black; /* Set color for fixed cells */
+}
+
+/* Editable cells */
+.editable {
+  cursor: pointer;
+  background-color: transparent; /* Transparent background for editable cells */
+  color: black; /* Optional: Set color for editable cell numbers */
+}
+
+/* Additional styles for levels and number buttons */
+.selected { 
+  background: linear-gradient(145deg, #ff7e5f, #feb47b); 
+}
+
+.highlighted { 
+  background-color: #ff6403; 
+  color: white; 
+  border: 1px solid #ccc; 
+}
+
+.fixed { 
+  background-color: transparent; 
+  pointer-events: none; 
+}
+
+.editable { 
+  cursor: pointer; 
+}
+
