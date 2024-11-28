@@ -1,3 +1,6 @@
+body {
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+}
 .text-align-center {
     text-align: center;
 }
@@ -32,4 +35,5 @@
 .btn-header {
     font-size: 20px;
     font-weight: bold;
+    background: linear-gradient(145deg, #ff7e5f, #feb47b);
 }
