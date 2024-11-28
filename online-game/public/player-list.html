@@ -1,73 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Player List</title>
     <script src="/socket.io/socket.io.js"></script>
     <style>
       body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(135deg, #6dd5ed, #2193b0);
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
+        align-items: center;
         height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #6dd5ed,
+          #2193b0
+        ); /* Gradient background */
+        color: #fff;
       }
       h1 {
-        margin-bottom: 20px;
-        color: #333;
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 30px;
       }
       #player-list {
         list-style-type: none;
         padding: 0;
-        margin: 0;
-        font-size: 18px;
+        margin-bottom: 30px;
       }
       #player-list li {
-        background-color: #fff;
-        margin: 5px 0;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 1.2rem;
+        margin: 10px 0;
+      }
+      .button-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        max-width: 800px;
+        margin-top: 20px;
+      }
+      .button-container button {
+        padding: 15px 30px;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(145deg, #ff7e5f, #feb47b);
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .button-container button:hover {
+        transform: translateY(-5px);
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+      }
+      footer {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #ddd;
+      }
+      footer a {
+        color: #ffd700;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      footer a:hover {
+        text-decoration: underline;
       }
     </style>
-  </head>
-  <body>
-    <h1>Current Players</h1>
-    <ul id="player-list"></ul>
-
     <script>
-      // Retrieve the username from localStorage
+      const socket = io();
+
+      // Retrieve username from localStorage
       let username = localStorage.getItem("username");
 
-      // If no username exists in localStorage, prompt the user
+      // If no username exists, prompt the user
       if (!username) {
         username = prompt("Enter Username");
-        while (!username || username.trim().length < 3 || username.trim().length > 20) {
+        while (
+          !username ||
+          username.trim().length < 3 ||
+          username.trim().length > 20
+        ) {
           username = prompt("Enter a valid username (3-20 characters):");
         }
         username = username.trim();
         localStorage.setItem("username", username); // Save username to localStorage
       }
 
-      // Initialize socket.io
-      const socket = io();
+      // Emit the username to the server
       socket.emit("setUsername", username);
 
-      // Update player list dynamically
+      // Update the player list dynamically
       socket.on("userList", function (users) {
         const playerList = document.getElementById("player-list");
-        playerList.innerHTML = "";
+        playerList.innerHTML = ""; // Clear the list
         users.forEach((user) => {
           const listItem = document.createElement("li");
           listItem.textContent = user;
           playerList.appendChild(listItem);
         });
       });
+
+      // Allow the user to clear their username
+      function clearUsername() {
+        localStorage.removeItem("username");
+        location.reload(); // Reload the page to prompt for a new username
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Player List</h1>
+    <p>Your username: <strong id="username-display"></strong></p>
+
+    <!-- Player List -->
+    <ul id="player-list"></ul>
+
+    <!-- Button Container -->
+    <div class="button-container">
+      <button onclick="clearUsername()">Change Username</button>
+      <button onclick="window.location.href='../homepage.html'">
+        Homepage
+      </button>
+    </div>
+
+    <footer>
+      <p>
+        Contact Info:
+        <a href="henryhrichmond@icloud.com.html">henryhrichmond@icloud.com</a>
+      </p>
+      <p>
+        Visit my GitHub:
+        <a href="https://github.com/TheRealMythicalpro9" target="_blank"
+          >TheRealMythicalpro9</a
+        >
+      </p>
+      <p>Text me (don’t call) at (1) 425-534-3012</p>
+      <p>&copy; 2024 My Online Game</p>
+    </footer>
+
+    <script>
+      // Display the current username dynamically
+      document.getElementById("username-display").textContent = username;
     </script>
   </body>
 </html>
