@@ -93,28 +93,16 @@
       }
     </style>
     <script>
-      // Check if username is already in sessionStorage
-      if (!sessionStorage.getItem("username")) {
-        // If not, prompt the user for a username
-        let username = prompt("Enter your username:");
-
-        // Ensure the username is valid (between 3 and 20 characters)
-        while (
-          !username ||
-          username.trim().length < 3 ||
-          username.trim().length > 20
-        ) {
-          username = prompt("Please enter a valid username (3-20 characters):");
-        }
-
-        // Save the username to sessionStorage for this session
-        sessionStorage.setItem("username", username);
+      let username = prompt("Enter your username:");
+      while (
+        !username ||
+        username.trim().length < 3 ||
+        username.trim().length > 20
+      ) {
+        username = prompt("Please enter a valid username (3-20 characters):");
       }
-
-      // Now that the username is set, proceed with lobby options
-      document.querySelector(".menu-container").style.display = "block"; // Show the menu options
-
-      // Function to share the website link
+      sessionStorage.setItem("username", username);
+      document.querySelector(".menu-container").style.display = "block";
       function shareSite() {
         const siteURL = "https://myfreewebgames.onrender.com";
         if (navigator.share) {
@@ -124,7 +112,6 @@
             url: siteURL,
           }).catch((error) => console.error("Sharing failed", error));
         } else {
-          // Fallback for unsupported browsers
           alert(
             "Share feature is not supported on your browser. You can manually share this link: " +
               siteURL
@@ -136,7 +123,6 @@
   <body>
     <h1>Welcome to the Online Game</h1>
 
-    <!-- Menu Buttons (Appear after username is set) -->
     <div class="menu-container" style="display: none">
       <button class="menu-button">Create a Private Lobby</button>
       <button class="menu-button">Join with a Code</button>
@@ -173,6 +159,4 @@
       </p>
       <p>Text me (don’t call) at (1) 425-534-3012</p>
       <p>&copy; 2024 My Online Game</p>
-    </footer>
-  </body>
-</html>
+    
