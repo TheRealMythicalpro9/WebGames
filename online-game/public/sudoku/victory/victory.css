@@ -1,0 +1,47 @@
+/* General page styling */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000; /* Black background to enhance effects */
+  overflow: hidden;
+}
+
+/* Victory container */
+.victory-container {
+  text-align: center;
+  position: relative;
+}
+
+/* Victory text styling */
+.victory-text {
+  font-size: 5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff0099, 0 0 40px #ff0099, 0 0 50px #ff0099;
+  animation: color-flash 2s infinite, text-scale 2s infinite alternate;
+}
+
+/* Flashing colors for the text */
+@keyframes color-flash {
+  0% { color: #ff0000; } /* Red */
+  10% { color: #ff7f00; } /* Orange */
+  20% { color: #ffff00; } /* Yellow */
+  30% { color: #7fff00; } /* Lime */
+  40% { color: #00ff00; } /* Green */
+  50% { color: #00ff7f; } /* Cyan-green */
+  60% { color: #00ffff; } /* Cyan */
+  70% { color: #007fff; } /* Blue */
+  80% { color: #0000ff; } /* Indigo */
+  90% { color: #7f00ff; } /* Violet */
+  100% { color: #ff00ff; } /* Magenta */
+}
+
+/* Subtle scaling animation for "pulsing" effect */
+@keyframes text-scale {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
