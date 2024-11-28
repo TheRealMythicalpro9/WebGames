@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="board">
+    <table></table>
+  </div>
+  <div id="menu">
+    <div id="number-menu">
+      <button class="number" data-number="1">1</button>
+      <button class="number" data-number="2">2</button>
+      <button class="number" data-number="3">3</button>
+      <button class="number" data-number="4">4</button>
+      <button class="number" data-number="5">5</button>
+      <button class="number" data-number="6">6</button>
+      <button class="number" data-number="7">7</button>
+      <button class="number" data-number="8">8</button>
+      <button class="number" data-number="9">9</button>
+      <button id="delete-button" class="number">Delete</button>
+    </div>
+    <div id="level-menu">
+      <button class="level" data-level="example">Example</button>
+      <button class="level" data-level="xxeasy">XXEasy</button>
+      <button class="level" data-level="xeasy">XEasy</button>
+      <button class="level" data-level="easy">Easy</button>
+      <button class="level" data-level="medium">Medium</button>
+      <button class="level" data-level="hard">Hard</button>
+      <button class="level" data-level="annoying">Annoing</button>
+      <button class="level" data-level="diabolical">Diabolical</button>
+      <button class="level" data-level="impossible">Impossible</button<button id="check-victory" onclick="checkVictory()">Check Victory</button>
+      <button id="check-victory" onclick="checkVictory()">Check Victory</button>
+    </div>
+  </div>
+  
+  <!-- Hidden Button (Initially Invisible) -->
+  <button id="hidden-button" style="position: absolute; visibility: hidden;">    </button>
+  
+  <script src="script.js"></script>
+</body>
+</html>
