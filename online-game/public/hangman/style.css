@@ -1,0 +1,126 @@
+/* General Reset and Box Model */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Game Container */
+.game-container {
+    background: linear-gradient(145deg, #ff7e5f, #feb47b);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+/* Hangman Canvas */
+#hangmanCanvas {
+    border: 2px solid #000;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+}
+
+/* Word container (guessed word) */
+.word-container {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 20px;
+    letter-spacing: 5px;
+}
+
+/* Input and Guess Button */
+.input-container {
+    margin-top: 20px;
+}
+
+#guess-input {
+    padding: 10px;
+    font-size: 18px;
+    width: 50px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+#submit-guess {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background: linear-gradient(145deg, #6dd5ed, #2193b0);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#submit-guess:hover {
+    background: linear-gradient(145deg, #2193b0, #6dd5ed);
+}
+
+/* Full Word Guess Input */
+.full-word-guess-container {
+    margin-top: 20px;
+}
+
+#full-word-input {
+    padding: 10px;
+    font-size: 18px;
+    width: 200px;
+    margin-right: 10px;
+    text-transform: uppercase;
+}
+
+#submit-full-word {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background: linear-gradient(145deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#submit-full-word:hover {
+    background: linear-gradient(145deg, #feb47b, #ff7e5f);
+}
+
+/* Status Message */
+.status {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Wrong Guesses */
+.wrong-guesses {
+    font-size: 16px;
+    color: #ff0000;
+    margin-top: 10px;
+}
+
+/* Restart Button */
+.restart-button {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.restart-button:hover {
+    background-color: #e53935;
+}
