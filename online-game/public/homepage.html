@@ -76,6 +76,21 @@
       .menu-button:hover {
         background-color: #218838;
       }
+      #share-button {
+        background: linear-gradient(145deg, #ff7e5f, #feb47b);
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+      }
+      #share-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+      }
     </style>
     <script>
       // Check if username is already in sessionStorage
@@ -99,8 +114,23 @@
       // Now that the username is set, proceed with lobby options
       document.querySelector(".menu-container").style.display = "block"; // Show the menu options
 
-      // Optionally, redirect to the first lobby automatically (uncomment to use)
-      // window.location.href = "/lobbies/lobby1/lobby1.html";
+      // Function to share the website link
+      function shareSite() {
+        const siteURL = "https://myfreewebgames.onrender.com";
+        if (navigator.share) {
+          navigator.share({
+            title: "Check out this site!",
+            text: "Play free web games here!",
+            url: siteURL,
+          }).catch((error) => console.error("Sharing failed", error));
+        } else {
+          // Fallback for unsupported browsers
+          alert(
+            "Share feature is not supported on your browser. You can manually share this link: " +
+              siteURL
+          );
+        }
+      }
     </script>
   </head>
   <body>
@@ -128,6 +158,8 @@
       <button onclick="window.location.href='https://my-battleship-online.onrender.com'">BattleShip</button>
       <button onclick="window.location.href='https://myonlinelobbies.onrender.com'">Online Lobby</button>
     </div>
+
+    <button id="share-button" onclick="shareSite()">Share this Site</button>
 
     <footer>
       <p>
