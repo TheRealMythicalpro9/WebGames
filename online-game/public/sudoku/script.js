@@ -87,6 +87,18 @@ const createPuzzle = (grid, level) => {
       count++;
     }
   }
+
+  // If the level is diabolical, add an unsolvable contradiction
+  if (level === 'diabolical') {
+    // Force a contradiction in the puzzle
+    let row = Math.floor(Math.random() * 9);
+    let col = Math.floor(Math.random() * 9);
+    const conflictingNumber = Math.floor(Math.random() * 9) + 1;
+
+    // Set a number that conflicts with other entries in the row/column/subgrid
+    puzzle[row][col] = conflictingNumber; // This should make the puzzle impossible to solve
+  }
+
   return puzzle;
 };
 
@@ -147,7 +159,7 @@ const revealMoreCells = () => {
 // Function to check if the current board follows the rules and is won
 const checkVictory = () => {
   if (isBoardValid(board)) {
-    window.location.href = "/victory/victory.html"; // Redirect to victory page if valid
+    window.location.href = "victory.html"; // Redirect to victory page if valid
   } else {
     alert("The Sudoku board is not correct!");
   }
