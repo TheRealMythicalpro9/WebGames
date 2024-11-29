@@ -67,8 +67,14 @@
       // Initialize socket.io
       const socket = io();
 
-      // Retrieve username from localStorage
-      let username = localStorage.getItem("username");
+      // Function to get the username from the URL query string
+      function getUsernameFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('username');
+      }
+
+      // Retrieve username from sessionStorage, localStorage, or URL query
+      let username = sessionStorage.getItem("username") || localStorage.getItem("username") || getUsernameFromURL();
 
       // If no username exists, prompt the user
       if (!username) {
@@ -81,6 +87,7 @@
           username = prompt("Enter a valid username (3-20 characters):");
         }
         username = username.trim();
+        sessionStorage.setItem("username", username); // Save username to sessionStorage
         localStorage.setItem("username", username); // Save username to localStorage
       }
 
@@ -122,9 +129,15 @@
 
       // Allow the user to clear their username
       function clearUsername() {
+        sessionStorage.removeItem("username");
         localStorage.removeItem("username");
         location.reload(); // Reload the page to prompt for a new username
       }
+
+      // Display the current username dynamically
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("username-display").textContent = username;
+      });
     </script>
   </head>
   <body>
@@ -155,16 +168,14 @@
       Change Username
     </button>
 
-    <script>
-      // Display the current username dynamically
-      document.getElementById("username-display").textContent = username;
-    </script>
+    <!-- Homepage Link -->
     <button onclick="window.location.href='../homepage.html'">Homepage</button>
 
+    <!-- Footer -->
     <footer>
       <p>
         Contact Info:
-        <a href="henryhrichmond@icloud.com.html">henryhrichmond@icloud.com</a>
+        <a href="mailto:henryhrichmond@icloud.com">henryhrichmond@icloud.com</a>
       </p>
       <p>
         Visit my GitHub:
@@ -172,7 +183,7 @@
           >TheRealMythicalpro9</a
         >
       </p>
-      <p>Text me(don't call) at (1)425-534-3012</p>
+      <p>Text me (don't call) at (1) 425-534-3012</p>
       <p>&copy; 2024 My Online Game</p>
     </footer>
   </body>
