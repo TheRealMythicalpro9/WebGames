@@ -42,7 +42,7 @@ header {
 .buttons {
     text-align: center;
     padding: 1rem;
-    background: linear-gradient(145deg, #ff7e5f, #feb47b);
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
 }
 
 button {
@@ -50,6 +50,7 @@ button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     cursor: pointer;
+    background: linear-gradient(145deg, #ff7e5f, #feb47b);
 }
 
 .console {
