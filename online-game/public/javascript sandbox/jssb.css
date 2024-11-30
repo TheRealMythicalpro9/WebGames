@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+.editor, .output {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor textarea {
+    flex: 1;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+.output iframe {
+    flex: 1;
+    border: none;
+}
+
+.buttons {
+    text-align: center;
+    padding: 1rem;
+    background: #f4f4f4;
+}
+
+button {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.console {
+    flex: 1;
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+    background: #1e1e1e;
+    color: #f1f1f1;
+    font-family: monospace;
+    overflow-y: auto;
+}
+
+.console-input {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background: #333;
+}
+
+.console-input input {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    background: #1e1e1e;
+    color: #f1f1f1;
+}
+
+.console-input button {
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
