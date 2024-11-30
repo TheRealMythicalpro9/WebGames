@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Sandbox with Auto-Run</title>
+    <link rel="stylesheet" href="hsb.css">
+</head>
+<body>
+    <header>
+        <h1>HTML Sandbox with Auto-Run</h1>
+    </header>
+    <div class="container">
+        <div class="editor">
+            <textarea id="html" placeholder="Write HTML here..."></textarea>
+        </div>
+        <div class="output">
+            <iframe id="preview"></iframe>
+        </div>
+    </div>
+    <div class="console">
+        <div id="console-log" class="console-log"></div>
+        <div class="console-input">
+            <input type="text" id="console-input" placeholder="Type commands here...">
+            <button onclick="executeConsoleInput()">Run</button>
+        </div>
+    </div>
+    <script src="hsb.js"></script>
+</body>
+</html>
