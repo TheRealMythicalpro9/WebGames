@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Sandbox with Console</title>
+    <link rel="stylesheet" href="jssb.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScript Sandbox with Console</h1>
+    </header>
+    <div class="container">
+        <div class="editor">
+            <textarea id="html" placeholder="Write HTML here..."></textarea>
+            <textarea id="css" placeholder="Write CSS here..."></textarea>
+            <textarea id="js" placeholder="Write JavaScript here..."></textarea>
+        </div>
+        <div class="output">
+            <iframe id="preview"></iframe>
+        </div>
+    </div>
+    <div class="buttons">
+        <button onclick="updateOutput()">Run Code</button>
+    </div>
+    <div class="console">
+        <div id="console-log" style="flex: 1; overflow-y: auto;"></div>
+        <div class="console-input">
+            <input type="text" id="console-input" placeholder="Type JavaScript commands here...">
+            <button onclick="executeConsoleInput()">Run</button>
+        </div>
+    </div>
+    <script src="jssb.js"></script>
+</body>
+</html>
