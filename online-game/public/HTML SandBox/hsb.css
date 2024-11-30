@@ -47,6 +47,10 @@ header {
     border: none;
 }
 
+.button {
+    background: linear-gradient(145deg, #ff7e5f, #feb47b);
+}    
+
 .console {
     height: 150px; /* Shorter console height */
     display: flex;
