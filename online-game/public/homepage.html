@@ -4,14 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage</title>
-      <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="/css/homepage.css">
     <script>
       // Check if username is already in sessionStorage
       if (!sessionStorage.getItem("username")) {
-        // If not, prompt the user for a username
         let username = prompt("Enter your username:");
-
-        // Ensure the username is valid (between 3 and 20 characters)
         while (
           !username ||
           username.trim().length < 3 ||
@@ -19,41 +16,28 @@
         ) {
           username = prompt("Please enter a valid username (3-20 characters):");
         }
-
-        // Save the username to sessionStorage for this session
         sessionStorage.setItem("username", username);
       }
 
-      // Now that the username is set, proceed with lobby options
-      document.querySelector(".menu-container").style.display = "block"; // Show the menu options
-
-      // Function to share the website link
-      function shareSite() {
-        const siteURL = "https://myfreewebgames.onrender.com";
-        if (navigator.share) {
-          navigator.share({
-            title: "Check out this site!",
-            text: "Play free web games here!",
-            url: siteURL,
-          }).catch((error) => console.error("Sharing failed", error));
-        } else {
-          // Fallback for unsupported browsers
-          alert(
-            "Share feature is not supported on your browser. You can manually share this link: " +
-              siteURL
-          );
-        }
+      // Function to fetch visit statistics from the server
+      function fetchVisitStats() {
+        fetch("/visit-stats")
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("today-visit-count").textContent = `${data.today} people have visited today.`;
+            document.getElementById("week-visit-count").textContent = `${data.week} people have visited this week.`;
+            document.getElementById("month-visit-count").textContent = `${data.month} people have visited this month.`;
+          })
+          .catch((error) => console.error("Error fetching visit stats:", error));
       }
+
+      // Fetch visit statistics when the page loads
+      window.onload = fetchVisitStats;
     </script>
   </head>
   <body>
     <h1>Welcome to the Online Game</h1>
 
-    <!-- Menu Buttons (Appear after username is set) -->
-    <div class="menu-container">
-      <button class="menu-button">Create a Private Lobby</button>
-      <button class="menu-button">Join with a Code</button>
-    </div>
 
     <div class="button-container">
       <button onclick="window.location.href='/blooket-calculator/index.html'">Blooket Calculator</button>
@@ -79,16 +63,16 @@
 
     <button id="share-button" onclick="shareSite()">Share this Site</button>
 
+    <!-- Visit Stats -->
+    <div id="visit-stats">
+      <p id="today-visit-count"></p>
+      <p id="week-visit-count"></p>
+      <p id="month-visit-count"></p>
+    </div>
+
     <footer>
-      <p>
-        Contact Info:
-        <a href="mailto:henryhrichmond@icloud.com">henryhrichmond@icloud.com</a>
-      </p>
-      <p>
-        Visit my GitHub:
-        <a href="https://github.com/TheRealMythicalpro9" target="_blank">TheRealMythicalpro9</a>
-      </p>
-      <p>Text me (don’t call) at (1) 425-534-3012</p>
+      <p>Contact Info: <a href="mailto:henryhrichmond@icloud.com">henryhrichmond@icloud.com</a></p>
+      <p>Visit my GitHub: <a href="https://github.com/TheRealMythicalpro9" target="_blank">TheRealMythicalpro9</a></p>
       <p>&copy; 2024 My Online Game</p>
     </footer>
   </body>

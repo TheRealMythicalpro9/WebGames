@@ -6,13 +6,21 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// Store connected users
-let users = {};
+// Store visits (for simplicity, this is in-memory, but use a DB in a real app)
+let visits = [];
+
+// Helper function to get the number of visits within a certain time range
+function getVisitCount(timeLimit) {
+  const now = new Date();
+  return visits.filter((visit) => now - new Date(visit.timestamp) <= timeLimit).length;
+}
 
 app.use(express.static("public"));
 
 // Serve the homepage as the default page
 app.get("/", (req, res) => {
+  // Record the visit time
+  visits.push({ timestamp: new Date() });
   res.sendFile(__dirname + "/public/homepage.html");
 });
 
@@ -30,12 +38,6 @@ app.get("/player-list.html", (req, res) => {
 io.on("connection", (socket) => {
   console.log("A user connected: " + socket.id);
 
-  // Add user to the list
-  socket.on("setUsername", (username) => {
-    users[socket.id] = username;
-    io.emit("userList", Object.values(users)); // Update all clients
-  });
-
   // Handle chat messages
   socket.on("chatMessage", (data) => {
     io.emit("chatMessage", data); // Broadcast the message
@@ -44,8 +46,20 @@ io.on("connection", (socket) => {
   // Remove user when disconnected
   socket.on("disconnect", () => {
     console.log("A user disconnected: " + socket.id);
-    delete users[socket.id];
-    io.emit("userList", Object.values(users)); // Update all clients
+  });
+});
+
+// Endpoint to get visit statistics
+app.get("/visit-stats", (req, res) => {
+  const now = new Date();
+  const oneDay = 24 * 60 * 60 * 1000; // Milliseconds in one day
+  const oneWeek = oneDay * 7; // Milliseconds in one week
+  const oneMonth = oneDay * 30; // Milliseconds in one month
+
+  res.json({
+    today: getVisitCount(oneDay),
+    week: getVisitCount(oneWeek),
+    month: getVisitCount(oneMonth),
   });
 });
 
