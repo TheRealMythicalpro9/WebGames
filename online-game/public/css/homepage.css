@@ -1,0 +1,114 @@
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #6dd5ed, #2193b0);
+        color: #fff;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 30px;
+      }
+
+      .button-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        max-width: 800px;
+        margin-top: 20px;
+      }
+
+      .button-container button {
+        padding: 15px 30px;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(145deg, #ff7e5f, #feb47b);
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .button-container button:hover {
+        transform: translateY(-5px);
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      footer {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #ddd;
+      }
+
+      footer a {
+        color: #ffd700;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .menu-container {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+        display: none;
+      }
+
+      .menu-button {
+        width: 150px;
+        height: 50px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .menu-button:hover {
+        background-color: #218838;
+      }
+
+      #share-button {
+        background: linear-gradient(145deg, #ff7e5f, #feb47b);
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      #share-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Responsive Menu for smaller screens */
+      @media (max-width: 600px) {
+        .button-container {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .menu-container {
+          flex-direction: column;
+        }
+
+        #share-button {
+          width: 100%;
+        }
+      }
