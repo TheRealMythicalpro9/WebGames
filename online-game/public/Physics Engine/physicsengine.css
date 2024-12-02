@@ -1,0 +1,33 @@
+    body {
+      display: flex;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    #left-panel {
+      width: 200px;
+      background: linear-gradient(135deg, #6dd5ed, #2193b0);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    #right-panel {
+      width: 300px;  /* Adjusted width to fit more sliders */
+      background: linear-gradient(135deg, #6dd5ed, #2193b0);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    #canvas {
+      flex-grow: 1;
+      border: 1px solid black;
+      background-color: white;
+      position: relative;
+    }
+    .draggable {
+      margin: 5px;
+      padding: 10px;
+      background: linear-gradient(145deg, #ff7e5f, #feb47b);
+      border-radius: 5px;
+      cursor: pointer;
+    }
