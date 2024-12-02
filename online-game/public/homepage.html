@@ -19,6 +19,18 @@
         sessionStorage.setItem("username", username);
       }
 
+      // Prevent counting the visit on page reload
+      if (!sessionStorage.getItem("visited")) {
+        // Mark as visited in the sessionStorage
+        sessionStorage.setItem("visited", "true");
+
+        // Send the visit to the server
+        fetch("/add-visit")
+          .then((response) => response.json())
+          .then((data) => console.log("Visit tracked"))
+          .catch((error) => console.error("Error tracking visit:", error));
+      }
+
       // Function to fetch visit statistics from the server
       function fetchVisitStats() {
         fetch("/visit-stats")
@@ -32,7 +44,10 @@
       }
 
       // Fetch visit statistics when the page loads
-      window.onload = fetchVisitStats;
+      window.onload = function() {
+        fetchVisitStats(); // Initial fetch to display stats
+        setInterval(fetchVisitStats, 5000); // Update stats every 5 seconds
+      };
     </script>
   </head>
   <body>
