@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2D Physics Engine</title>
+  <link rel="stylesheet" href="physicsengine.css">
+</head>
+<body>
+
+  <div id="left-panel">
+    <div class="draggable" id="square" draggable="true">Square</div>
+    <div class="draggable" id="circle" draggable="true">Circle</div>
+    <div class="draggable" id="triangle" draggable="true">Triangle</div>
+    <div class="draggable" id="rectangle" draggable="true">Rectangle</div>
+    <div class="draggable" id="pentagon" draggable="true">Pentagon</div>
+    <div class="draggable" id="hexagon" draggable="true">Hexagon</div>
+  </div>
+
+  <div id="right-panel">
+    <label for="gravity">Gravity: <span id="gravity-value">0.2</span></label>
+    <input type="range" id="gravity" min="0" max="1" step="0.01" value="0.2">
+    <label for="bounciness">Bounciness: <span id="bounciness-value">0.6</span></label>
+    <input type="range" id="bounciness" min="0" max="1" step="0.01" value="0.6">
+    <label for="friction">Friction: <span id="friction-value">0.01</span></label>
+    <input type="range" id="friction" min="0" max="0.1" step="0.01" value="0.01">
+    <button onclick="window.location.href='../homepage.html'">Homepage</button>
+  </div>
+
+  <canvas id="canvas"></canvas>
+
+  <script src="physicsengine.js"></script>
+
+</body>
+</html>
