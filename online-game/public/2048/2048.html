@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048 Game</title>
+    <link rel="stylesheet" href="2048.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header with Game Title and Buttons -->
+        <div class="header">
+            <h1>2048</h1>
+            <div class="buttons">
+                <button onclick="startGame()">New Game</button>
+            </div>
+        </div>
+        <!-- Grid -->
+        <div class="grid-container">
+            <div class="grid">
+                <div class="tile" id="tile-1"></div>
+                <div class="tile" id="tile-2"></div>
+                <div class="tile" id="tile-3"></div>
+                <div class="tile" id="tile-4"></div>
+                <div class="tile" id="tile-5"></div>
+                <div class="tile" id="tile-6"></div>
+                <div class="tile" id="tile-7"></div>
+                <div class="tile" id="tile-8"></div>
+                <div class="tile" id="tile-9"></div>
+                <div class="tile" id="tile-10"></div>
+                <div class="tile" id="tile-11"></div>
+                <div class="tile" id="tile-12"></div>
+                <div class="tile" id="tile-13"></div>
+                <div class="tile" id="tile-14"></div>
+                <div class="tile" id="tile-15"></div>
+                <div class="tile" id="tile-16"></div>
+            </div>
+        </div>
+        <!-- Score Display -->
+        <div class="score-container">
+            <p>Score: <span id="score">0</span></p>
+        </div>
+    </div>
+    <script src="2048.js"></script>
+</body>
+</html>
