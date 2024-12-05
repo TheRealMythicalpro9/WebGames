@@ -1,5 +1,6 @@
 body {
     background: linear-gradient(135deg, #6dd5ed, #2193b0);
+    font-family: Arial, sans-serif;
 }
 
 canvas {
@@ -14,4 +15,35 @@ canvas {
 /* Game board background */
 #game-board {
     background: linear-gradient(145deg, #ff7e5f, #feb47b);
+}
+
+/* Game info section */
+.game-info {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+}
+
+#scoreboard p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+#home-button {
+    margin-top: 100px;
+    margin-left: 320px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background: linear-gradient(145deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#home-button:hover {
+    background-color: #feb47b;
 }
