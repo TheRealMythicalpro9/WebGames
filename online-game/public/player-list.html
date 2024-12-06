@@ -90,47 +90,42 @@
         text-decoration: underline;
       }
     </style>
-    <script>
-      const socket = io();
+<script>
+  const socket = io();
 
-      // Retrieve the username from sessionStorage (specific to this tab)
-      let username = sessionStorage.getItem("username");
+  // Retrieve the username from sessionStorage
+  let username = sessionStorage.getItem("username") || prompt("Enter your username:");
 
-      // If no username exists in sessionStorage, prompt the user
-      if (!username) {
-        username = prompt("Enter Username");
-        while (!username || username.trim().length < 3 || username.trim().length > 20) {
-          username = prompt("Enter a valid username (3-20 characters):");
-        }
-        username = username.trim();
-        sessionStorage.setItem("username", username); // Save username to sessionStorage for this tab
-      }
+  // Ensure username is valid
+  while (!username || username.trim().length < 3 || username.trim().length > 20) {
+    username = prompt("Enter a valid username (3-20 characters):");
+  }
+  sessionStorage.setItem("username", username);
 
-      // Emit the username to the server
-      socket.emit("setUsername", username);
+  // Emit the username to the server
+  socket.emit("setUsername", username);
 
-      // Update the player list dynamically
-      socket.on("userList", function (users) {
-        const playerList = document.getElementById("player-list");
-        playerList.innerHTML = ""; // Clear the list
-        users.forEach((user) => {
-          const listItem = document.createElement("li");
-          listItem.textContent = user;
-          playerList.appendChild(listItem);
-        });
-      });
+  // Update player list dynamically
+  socket.on("userList", function (users) {
+    const playerList = document.getElementById("player-list");
+    playerList.innerHTML = "";
+    users.forEach((user) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = user.username; // Display the username property of each user object
+      playerList.appendChild(listItem);
+    });
+  });
 
-      // Display the current username dynamically
-      document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("username-display").textContent = username;
-      });
+  // Update username display
+  document.getElementById("username-display").textContent = username;
 
-      // Allow the user to clear their username
-      function clearUsername() {
-        sessionStorage.removeItem("username");
-        location.reload(); // Reload the page to prompt for a new username
-      }
-    </script>
+  // Clear and change username
+  function clearUsername() {
+    sessionStorage.removeItem("username");
+    location.reload();
+  }
+</script>
+
   </head>
   <body>
     <h1>Player List</h1>
