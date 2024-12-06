@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minesweeper</title>
+  <link rel="stylesheet" href="MineSweeper.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <table>
+        <tr>
+          <th id="timer" style="width: 50px; border: 1px solid black;">0</th>
+          <th id="counter" style="width: 50px; border: 1px solid black;"></th>
+          <th>Difficulty</th>
+          <th class="custom_input hidden">Mines</th>
+          <th class="custom_input hidden">Width</th>
+          <th class="custom_input hidden">Height</th>
+        </tr>
+        <tr>
+          <td colspan="2"><button id="new" style="width: 110px;"> New Game </button></td>
+          <button onclick="window.location.href='../homepage.html'">Homepage</button>
+          <td>
+            <select id="difficulty">
+              <option value="beginner" selected="selected"> Beginner </option>
+              <option value="intermediate"> Intermediate </option>
+              <option value="expert"> Expert </option>
+              <option value="custom"> Custom </option>
+            </select>
+          </td>
+          <td><input type="number" id="mines" min="10" max="668" class="custom_input hidden" value="10"></td>
+          <td><input type="number" id="width" min="9" max="30" class="custom_input hidden" value="9"></td>
+          <td><input type="number" id="height" min="9" max="24" class="custom_input hidden" value="9"></td>
+        </tr>
+      </table>
+    </div>
+    <div id="board" oncontextmenu="return false;" style="border: 1px solid black; display: inline-block;"></div>
+  </div>
+
+  <script src="MineSweeper.js"></script>
+</body>
+</html>

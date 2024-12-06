@@ -1,0 +1,68 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  
+  }
+  
+  #board {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+    border: 1px solid #333;
+  }
+  
+  table {
+    text-align: center;
+  }
+  
+  #timer, #counter {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .hidden { display: none; }
+  
+  .tile {
+    height: 20px;
+    width: 20px;
+    font-weight: 2;
+    vertical-align: middle;
+    text-align: center;
+    background: linear-gradient(145deg, #ff7e5f, #feb47b);
+  }
+  
+  .unclicked { background-color: lightgrey; }
+  
+  .flagged { color: red; }
+  
+  .question { color: black; }
+  
+  .marker { background-color: lightblue; }
+  
+  .mine { color: red; }
+  
+  #board.disabled { cursor: not-allowed; }
+  
+  #board:hover { cursor: pointer; }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(145deg, #ff7e5f, #feb47b);
+  
+  }
+  
+  select {
+    font-size: 16px;
+  }
+  
+  input[type="number"] {
+    width: 50px;
+    font-size: 16px;
+  }
+  
