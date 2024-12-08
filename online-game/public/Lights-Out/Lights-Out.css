@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #2c3e50;
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
     color: #ecf0f1;
     display: flex;
     flex-direction: column;
@@ -28,7 +28,7 @@ select, button {
     border-radius: 5px;
     color: #ecf0f1;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: linear-gradient(135deg, #6dd5ed, #2193b0);
 }
 
 select {
@@ -72,7 +72,7 @@ button:hover, select:hover {
 #message {
     margin-top: 20px;
     font-size: 1.5em;
-    color: #2ecc71;
+    color: #feb47b;
     resize: both; /* Enable both horizontal and vertical resizing */
     overflow: auto; /* Ensure content is scrollable if it overflows */
     min-width: 200px; /* Set a minimum width */
@@ -90,7 +90,7 @@ button:hover, select:hover {
     align-items: center;
     position: sticky; /* Makes buttons stay visible when scrolling */
     top: 0;
-    background-color: #2c3e50;
+    background: linear-gradient(145deg, #ff7e5f, #feb47b);
     z-index: 10;
     padding: 10px;
     width: 100%;
@@ -129,7 +129,7 @@ button:hover, select:hover {
     position: fixed;
     top: 50px;
     right: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background: linear-gradient(145deg, #ff7e5f, #feb47b);
     color: white;
     padding: 15px;
     border-radius: 5px;
