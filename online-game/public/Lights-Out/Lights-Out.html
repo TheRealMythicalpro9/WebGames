@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lights Out Game</title>
+    <link rel="stylesheet" href="Lights-Out.css">
+</head>
+<body>
+    <h1>Lights Out</h1>
+    <div id="controls">
+        <div id="help-icon" class="help-icon">?</div>
+        <div id="help-message" class="help-message">
+            <p>Click on any light to toggle it and its neighbors (up, down, left, right).</p>
+            <p>The goal is to turn off all the lights.</p>
+            <p>Click "Solve" to get a solution for the current configuration.</p>
+        </div>
+
+        <select id="grid-size-dropdown"></select>
+        <button id="reset-button">Reset</button>
+        <button id="solve-button">Solve</button>
+        <div id="move-counter">Moves: 0</div>
+    </div>
+    <div id="game-container"></div>
+    <div id="message"></div>
+    <script src="Lights-Out.js"></script>
+</body>
+</html>
