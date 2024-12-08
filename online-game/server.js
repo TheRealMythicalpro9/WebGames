@@ -12,9 +12,12 @@ const statsFile = "./visit-stats.json";
 // Load and save visit stats
 function loadVisitStats() {
   if (fs.existsSync(statsFile)) {
-    return JSON.parse(fs.readFileSync(statsFile, "utf-8"));
+    const stats = JSON.parse(fs.readFileSync(statsFile, "utf-8"));
+    // Ensure 'allTime' exists in older versions of the stats file
+    if (!stats.allTime) stats.allTime = 0;
+    return stats;
   }
-  return { today: 0, week: 0, month: 0, startDate: new Date().toISOString() };
+  return { today: 0, week: 0, month: 0, allTime: 0, startDate: new Date().toISOString() };
 }
 
 function saveVisitStats(stats) {
@@ -44,14 +47,18 @@ app.get("/add-visit", (req, res) => {
   const now = new Date();
   const startDate = new Date(visitStats.startDate);
 
+  // Reset daily stats if the day has changed
   if (now.getDate() !== startDate.getDate()) {
     visitStats.today = 0;
     visitStats.startDate = now.toISOString();
   }
 
+  // Increment all counters
   visitStats.today++;
   visitStats.week++;
   visitStats.month++;
+  visitStats.allTime++; // Increment the all-time counter
+
   saveVisitStats(visitStats);
 
   res.json({ message: "Visit counted" });
