@@ -12,10 +12,7 @@ const statsFile = "./visit-stats.json";
 // Load and save visit stats
 function loadVisitStats() {
   if (fs.existsSync(statsFile)) {
-    const stats = JSON.parse(fs.readFileSync(statsFile, "utf-8"));
-    // Ensure 'allTime' exists in older versions of the stats file
-    if (!stats.allTime) stats.allTime = 0;
-    return stats;
+    return JSON.parse(fs.readFileSync(statsFile, "utf-8"));
   }
   return { today: 0, week: 0, month: 0, allTime: 0, startDate: new Date().toISOString() };
 }
@@ -47,18 +44,15 @@ app.get("/add-visit", (req, res) => {
   const now = new Date();
   const startDate = new Date(visitStats.startDate);
 
-  // Reset daily stats if the day has changed
   if (now.getDate() !== startDate.getDate()) {
     visitStats.today = 0;
     visitStats.startDate = now.toISOString();
   }
 
-  // Increment all counters
   visitStats.today++;
   visitStats.week++;
   visitStats.month++;
-  visitStats.allTime++; // Increment the all-time counter
-
+  visitStats.allTime++;
   saveVisitStats(visitStats);
 
   res.json({ message: "Visit counted" });
@@ -70,10 +64,10 @@ app.get("/visit-stats", (req, res) => {
 
 // Socket.IO handling
 io.on("connection", (socket) => {
-  console.log(`User connected: ${socket.id}`);
+  console.log(User connected: ${socket.id});
 
   // Assign default username
-  users[socket.id] = { username: `Guest${socket.id.substring(0, 5)}` };
+  users[socket.id] = { username: Guest${socket.id.substring(0, 5)} };
   io.emit("userList", Object.values(users));
 
   // Handle username updates
@@ -89,7 +83,7 @@ io.on("connection", (socket) => {
 
   // Disconnect handling
   socket.on("disconnect", () => {
-    console.log(`User disconnected: ${socket.id}`);
+    console.log(User disconnected: ${socket.id});
     delete users[socket.id];
     io.emit("userList", Object.values(users));
   });
@@ -98,5 +92,5 @@ io.on("connection", (socket) => {
 // Start the server
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(Server running on http://localhost:${PORT});
 });
