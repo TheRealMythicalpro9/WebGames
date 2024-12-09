@@ -37,10 +37,10 @@
         fetch("/visit-stats")
           .then((response) => response.json())
           .then((data) => {
-            document.getElementById("today-visit-count").textContent = ${data.today} people have visited today.;
-            document.getElementById("week-visit-count").textContent = ${data.week} people have visited this week.;
-            document.getElementById("month-visit-count").textContent = ${data.month} people have visited this month.;
-            document.getElementById("allTime-visit-count").textContent = ${data.allTime} people have visited total.;
+            document.getElementById("today-visit-count").textContent = `${data.today} people have visited today.`;
+            document.getElementById("week-visit-count").textContent = `${data.week} people have visited this week.`;
+            document.getElementById("month-visit-count").textContent = `${data.month} people have visited this month.`;
+            document.getElementById("allTime-visit-count").textContent = `${data.allTime} people have visited total.`;
           })
           .catch((error) => console.error("Error fetching visit stats:", error));
       }

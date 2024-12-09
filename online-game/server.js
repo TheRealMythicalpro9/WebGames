@@ -64,10 +64,10 @@ app.get("/visit-stats", (req, res) => {
 
 // Socket.IO handling
 io.on("connection", (socket) => {
-  console.log(User connected: ${socket.id});
+  console.log(`User connected: ${socket.id}`);
 
   // Assign default username
-  users[socket.id] = { username: Guest${socket.id.substring(0, 5)} };
+  users[socket.id] = { username: `Guest${socket.id.substring(0, 5)}` };
   io.emit("userList", Object.values(users));
 
   // Handle username updates
@@ -83,7 +83,7 @@ io.on("connection", (socket) => {
 
   // Disconnect handling
   socket.on("disconnect", () => {
-    console.log(User disconnected: ${socket.id});
+    console.log(`User disconnected: ${socket.id}`);
     delete users[socket.id];
     io.emit("userList", Object.values(users));
   });
@@ -92,5 +92,5 @@ io.on("connection", (socket) => {
 // Start the server
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(Server running on http://localhost:${PORT});
+  console.log(`Server running on http://localhost:${PORT}`);
 });
