@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="guess.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Number Guessing Game</h1>
+        <p>Guess a number between 1 and 999</p>
+        <input type="number" id="guess" placeholder="Enter your guess" min="1" max="999">
+        <button onclick="checkGuess()">Guess</button>
+        <p id="feedback"></p>
+        <p>Times You've Played: <span id="times-played">0</span></p>
+        <p>Your score: <span id="score">0</span></p>
+        <p>High score: <span id="high-score">0</span></p>
+        <p id="result"></p>
+
+        <!-- Save/Load Progress -->
+        <button onclick="generateCode()">Generate Code</button>
+        <input type="text" id="generated-code" readonly placeholder="Generated code will appear here">
+        <br><br>
+        <input type="text" id="paste-code" placeholder="Paste your code here">
+        <button onclick="loadProgress()">Load Progress</button>
+        <br><br>
+        <button onclick="resetGame()">Reset</button> <!-- Reset Button -->
+    </div>
+    <script src="guess.js"></script>
+</body>
+</html>
