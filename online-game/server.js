@@ -102,7 +102,7 @@ io.on("connection", (socket) => {
 
   // Broadcast chat messages
   socket.on("chatMessage", (message) => {
-    io.emit("chatMessage", { username: users[socket.id]?.username || "Anonymous", message });
+    io.emit("chatMessage", message);
   });
 
   // Handle disconnect
