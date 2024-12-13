@@ -2,12 +2,14 @@ const express = require("express");
 const http = require("http");
 const socketIo = require("socket.io");
 const fs = require("fs");
+const path = require("path");
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-const statsFile = "./visit-stats.json";
+// Use persistent storage or local file
+const statsFile = process.env.RENDER_PERSISTENT_STORAGE || path.join(__dirname, "visit-stats.json");
 
 // Load and save visit stats
 function loadVisitStats() {
@@ -21,43 +23,65 @@ function saveVisitStats(stats) {
   fs.writeFileSync(statsFile, JSON.stringify(stats, null, 2), "utf-8");
 }
 
-let visitStats = loadVisitStats();
-const users = {};
-
-// Serve static files
-app.use(express.static("public"));
-
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/homepage.html");
-});
-
-app.get("/chat.html", (req, res) => {
-  res.sendFile(__dirname + "/public/chat.html");
-});
-
-app.get("/player-list.html", (req, res) => {
-  res.sendFile(__dirname + "/public/player-list.html");
-});
-
-// Increment visit stats
-app.get("/add-visit", (req, res) => {
+// Reset stats based on the current date
+function resetStatsIfNeeded() {
   const now = new Date();
-  const startDate = new Date(visitStats.startDate);
+  const statsDate = new Date(visitStats.startDate);
 
-  if (now.getDate() !== startDate.getDate()) {
+  // Reset daily stats
+  if (now.toDateString() !== statsDate.toDateString()) {
     visitStats.today = 0;
     visitStats.startDate = now.toISOString();
   }
 
+  // Reset weekly stats (e.g., every Sunday)
+  if (now.getDay() === 0 && statsDate.getDay() !== 0) {
+    visitStats.week = 0;
+  }
+
+  // Reset monthly stats
+  if (now.getMonth() !== statsDate.getMonth() || now.getFullYear() !== statsDate.getFullYear()) {
+    visitStats.month = 0;
+  }
+}
+
+let visitStats = loadVisitStats();
+const users = {};
+
+// Middleware to serve static files
+app.use(express.static("public"));
+
+// Route to serve the main page
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "homepage.html"));
+});
+
+// Additional pages for chat and player list
+app.get("/chat.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "chat.html"));
+});
+
+app.get("/player-list.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "player-list.html"));
+});
+
+// API to increment visit stats
+app.get("/add-visit", (req, res) => {
+  resetStatsIfNeeded();
+
+  // Update stats
   visitStats.today++;
   visitStats.week++;
   visitStats.month++;
   visitStats.allTime++;
+
+  // Save stats to file
   saveVisitStats(visitStats);
 
-  res.json({ message: "Visit counted" });
+  res.json({ message: "Visit counted", visitStats });
 });
 
+// API to fetch visit stats
 app.get("/visit-stats", (req, res) => {
   res.json(visitStats);
 });
@@ -78,10 +102,10 @@ io.on("connection", (socket) => {
 
   // Broadcast chat messages
   socket.on("chatMessage", (message) => {
-    io.emit("chatMessage", message);
+    io.emit("chatMessage", { username: users[socket.id]?.username || "Anonymous", message });
   });
 
-  // Disconnect handling
+  // Handle disconnect
   socket.on("disconnect", () => {
     console.log(`User disconnected: ${socket.id}`);
     delete users[socket.id];
