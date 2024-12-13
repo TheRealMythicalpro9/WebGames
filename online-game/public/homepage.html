@@ -19,7 +19,22 @@
         }
         sessionStorage.setItem("username", username);
       }
-
+      function shareSite() {
+        const siteURL = "https://myfreewebgames.onrender.com";
+        if (navigator.share) {
+          navigator.share({
+            title: "Check out this site!",
+            text: "Play free web games here!",
+            url: siteURL,
+          }).catch((error) => console.error("Sharing failed", error));
+        } else {
+          // Fallback for unsupported browsers
+          alert(
+            "Share feature is not supported on your browser. You can manually share this link: " +
+              siteURL
+          );
+        }
+      }
       // Prevent counting the visit on page reload
       if (!sessionStorage.getItem("visited")) {
         // Mark as visited in the sessionStorage
