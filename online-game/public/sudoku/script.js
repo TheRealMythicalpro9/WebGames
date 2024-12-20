@@ -159,7 +159,7 @@ const revealMoreCells = () => {
 // Function to check if the current board follows the rules and is won
 const checkVictory = () => {
   if (isBoardValid(board)) {
-    "window.location.href='/.victory/victory.html'"; // Redirect to victory page if valid
+    window.location.href = '/victory/victory.html'; // Redirect to victory page if valid
   } else {
     alert("The Sudoku board is not correct!");
   }
